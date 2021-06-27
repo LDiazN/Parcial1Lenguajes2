@@ -11,6 +11,7 @@ Graph:
     0 2, try
     0 3, instr
     1 4, ;
+    1 38, $
     2 5, I
     2 6, try
     2 7, instr 
@@ -22,6 +23,7 @@ Graph:
     6 11, I
     6 6, try
     6 7, instr
+    8 4, ;
     9 12, I
     9 13, try
     9 14, instr
@@ -30,7 +32,7 @@ Graph:
     10 7, instr
     11 16, catch
     11 10, ;
-    12 17 finally
+    12 17, finally
     12 18, ;
     13 19, I
     13 6, try
@@ -86,18 +88,18 @@ Graph:
 
 
 
-State 0:
-    [S -> . I                       , $ ]  
+State 0: 0
+    [S -> . I $                     , $ ]  
     [I -> . try I catch I finally I , $, ; ] 
     [I -> . try I catch I           , $, ; ]
     [I -> . I ; I                   , $, ; ]  
     [I -> . instr                   , $, ; ] 
 
 State 1:
-    [ S -> I .                      , $ ]                   shift-reduce con las otras dos reglas de este estado                       
+    [ S -> I . $                    , $ ]                   shift-reduce                 
     [ I -> I . ; I                  , $, ; ] 
 
-State 2:
+State 2: 1
     [I -> try . I catch I finally I , $, ; ]  
     [I -> try . I catch I           , $, ; ]
     [I -> . try I catch I finally I , catch, ; ]  
@@ -108,14 +110,14 @@ State 2:
 State 3:
     [I -> instr .                   , $, ; ]                                          
 
-State 4:
-    [ I -> I ; . I                  , $, ; ]                   
+State 4: 
+    [I -> I ; . I                   , $, ; ]                   
     [I -> . try I catch I finally I , $, ; ]  
     [I -> . try I catch I           , $, ; ]  
     [I -> . I ; I                   , $, ; ]  
     [I -> . instr                   , $, ; ]  
 
-State 5:
+State 5: 2
     [I -> try I . catch I finally I , $, ; ] 
     [I -> try I . catch I           , $, ; ]
     [I -> I . ; I                   , catch, ; ] 
@@ -132,9 +134,10 @@ State 7:
     [I -> instr .                   , catch, ; ]                                          
 
 State 8:
-    [ I -> I ; I .                  , $, ; ]                                                  
+    [ I -> I ; I .                  , $, ; ]                shift-reduce 
+    [ I ->  I . ; I                 , $, ; ]        
 
-State 9:
+State 9: 3
     [I -> try I catch . I finally I , $, ; ]   
     [I -> try I catch . I           , $, ; ]
     [I -> . try I catch I finally I , finally, $, ; ] 
@@ -156,10 +159,10 @@ State 11:
 
 State 12:
     [I -> try I catch I . finally I , $, ; ] 
-    [I -> try I catch I .           , $, ; ]                   shift-reduce con las otras reglas de este estado                       
+    [I -> try I catch I .           , $, ; ]                   shift-reduce                        
     [I -> I . ; I                   , finally, $, ; ] 
 
-State 13:
+State 13: 4
     [I -> try . I catch I finally I , finally, $, ; ] 
     [I -> try . I catch I           , finally, $, ; ]
     [I -> . try I catch I finally I , catch, ; ]  
@@ -171,7 +174,7 @@ State 14:
     [I -> instr .                   , finally, $, ; ]                                         
 
 State 15:
-    [ I -> I ; I .                  , catch, ; ]            shift-reduce con las otras reglas de este estado                           
+    [ I -> I ; I .                  , catch, ; ]                shift-reduce                            
     [I ->  I . ; I                  , catch, ; ] 
 
 State 16:
@@ -190,14 +193,14 @@ State 17:
     [I -> . instr                   , $, ; ]
 
 
-State 18
+State 18:
     [I -> I ; . I                   , finally, $, ; ] 
     [I -> . try I catch I finally I , finally, $, ; ] 
     [I -> . try I catch I           , finally, $, ; ] 
     [I -> . I ; I                   , finally, $, ; ] 
     [I -> . instr                   , finally, $, ; ] 
 
-State 19:
+State 19: 5
     [I -> try I . catch I finally I , finally, $, l ] 
     [I -> try I . catch I           , finally, $, l ]
     [I -> I . ; I                   , finally, $, l ] 
@@ -219,14 +222,14 @@ State 22:
     [I -> instr .                   , finally, catch, ; ]                                          
 
 State 23:
-    [I -> try I catch I finally I . , $, ; ] 
+    [I -> try I catch I finally I . , $, ; ]                     shift-reduce
     [I -> I . ; I                   , $, ; ] 
 
 State 24:
     [I -> I ; I .                   , finally, $, ; ]             shift-reduce                         
     [I -> I . ; I                   , finally, $, ; ] 
 
-State 25:
+State 25: 6
     [I -> try I catch . I finally I , finally, $, ; ] 
     [I -> try I catch . I           , finally, $, ; ]
     [I -> . try I catch I finally I , finally, $, ; ] 
@@ -252,17 +255,17 @@ State 28:
     [I -> try I . catch I finally I , finally, catch. ; ] 
     [I -> I . ; I                   , finally, catch. ; ] 
 
-State 29:
+State 29: 7
     [I -> try I catch I . finally I , finally, $, ; ] 
-    [I -> try I catch I .           , finally, $, ; ]             shift-reduce                         
+    [I -> try I catch I .           , finally, $, ; ]               shift-reduce                         
     [I -> I . ; I                   , finally, $, ; ] 
 
 State 30
-    [I -> try I catch I finally I . , catch, ; ]
+    [I -> try I catch I finally I . , catch, ; ]                    shift-reduce
     [I -> I . ; I                   , catch, ; ] 
 
 State 31:
-    [I -> I ; I .                   , finally, catch, ; ]                 shift-reduce                         
+    [I -> I ; I .                   , finally, catch, ; ]           shift-reduce                         
     [I -> I . ; I                   , finally, catch, ; ] 
 
 State 32:
@@ -283,11 +286,11 @@ State 33:
 
 State 34:
     [I -> try I catch I . finally I , finally, catch, ; ]
-    [I -> try I catch I .           , finally, catch, ; ]       shift-reduce                         
+    [I -> try I catch I .           , finally, catch, ; ]           shift-reduce                         
     [I -> I . ; I                   , finally, catch, ; ] 
 
 State 35:
-    [I -> try I catch I finally I . , finally, $, ; ]           shift-reduce                
+    [I -> try I catch I finally I . , finally, $, ; ]               shift-reduce                
     [I -> I . ; I                   , finally, $, ; ] 
 
 State 36:
@@ -298,8 +301,163 @@ State 36:
     [I -> . instr                   , finally, catch, ; ] 
     
 State 37:
-    [I -> try I catch I finally I . , finally, catch, ; ]                 shift-reduce            
+    [I -> try I catch I finally I . , finally, catch, ; ]           shift-reduce            
     [I -> I . ; I                   , finally, catch, ; ] 
+
+State 38:
+    [ S -> I $ .                    , $ ]                   shift-reduce                 
 
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
+
+1.b) Como forzar que se cumplan las reglas de precedencia dadas:
+
+Para los estados:
+
+    State 8:
+        [ I -> I ; I .                  , $, ; ]                        shift-reduce 
+        [ I ->  I . ; I                 , $, ; ]        
+
+
+    State 24:
+        [I -> I ; I .                   , finally, $, ; ]               shift-reduce                         
+        [I -> I . ; I                   , finally, $, ; ] 
+
+    State 31:
+        [I -> I ; I .                   , finally, catch, ; ]           shift-reduce                         
+        [I -> I . ; I                   , finally, catch, ; ] 
+
+    State 15:
+        [ I -> I ; I .                  , catch, ; ]                    shift-reduce                            
+        [ I ->  I . ; I                  , catch, ; ] 
+
+    reducimos, para asegurar la asociatividad izq:
+        . instr ; instr ; instr  < shift
+        instr . ; instr ; instr  < reduce I0=instr
+        . I0 ; instr ; instr     < shift
+        I0 . ; instr ; instr     < shift
+        I0 ; . instr ; instr     < shift
+        I0 ; instr . ; instr     < reduce I1=instr
+        I0 ; . I1     ; instr    < shift 
+        I0 ; I1 .     ; instr    < reduce I2= (I0 ; I1)
+        . I2 ; instr             < shift
+        I2 . ; instr             < shift
+        I2 ; . instr             < shift
+        I2 ; instr .             < shift
+        I2 ; instr .             < reduce I3 = instr
+        I2 ; . I3                < shift
+        I2 ; I3 .                < reduce I4 = (I2;I3)
+        . I4                     < shift
+        I4 .                     < reduce S = I4
+        S
+        finalmente:
+        S = I4 = (I2;I3) = ((I0;I1);instr) = ((instr;instr);instr) < asociativo izq
+
+Para el estado:
+
+    State 1:
+        [ S -> I .                      , $ ]                   shift-reduce                 
+        [ I -> I . ; I                  , $, ; ] 
+
+        hacemos shift
+
+Para los estados:
+
+    State 23:
+        [I -> try I catch I finally I . , $, ; ]                     shift-reduce
+        [I -> I . ; I                   , $, ; ] 
+
+    State 30
+        [I -> try I catch I finally I . , catch, ; ]                    shift-reduce
+        [I -> I . ; I                   , catch, ; ] 
+
+    State 35:
+        [I -> try I catch I finally I . , finally, $, ; ]               shift-reduce                
+        [I -> I . ; I                   , finally, $, ; ] 
+
+    State 37:
+        [I -> try I catch I finally I . , finally, catch, ; ]           shift-reduce            
+        [I -> I . ; I                   , finally, catch, ; ] 
+
+        Escogemos hacer reduce para hacer cumplir que finally tenga más precedencia que ;
+        Ejemplo:
+        . I0 ; try I1 catch I2 finally I3 ; I4 < shift
+        I0 . ; try I1 catch I2 finally I3 ; I4 < shift
+        I0 ; . try I1 catch I2 finally I3 ; I4 < shift
+        I0 ; try . I1 catch I2 finally I3 ; I4 < shift
+        I0 ; try I1 . catch I2 finally I3 ; I4 < shift
+        I0 ; try I1 catch . I2 finally I3 ; I4 < shift
+        I0 ; try I1 catch I2 . finally I3 ; I4 < shift 
+        I0 ; try I1 catch I2 finally . I3 ; I4 < shift 
+        I0 ; try I1 catch I2 finally I3 . ; I4 < (shift-reduce, escogemos reduce) I5=try I1 catch I2 finally I3
+        I0 ; . I5 ; I4                         < shift
+        I0 ; I5 . ; I4                         < reduce I6=(I0;I5)
+        . I6 ; I4                              < shift
+        I6 . ; I4                              < shift
+        I6 ; . I4                              < shift
+        I6 ; I4 .                              < reduce I7=(I6;I4)
+        I7                                     < reduce S=I7
+        S
+        S = I7 = (I6;I4) = ((I0;(try I1 catch I2 finally I3)); I4)
+
+Para los estados:
+    State 12:
+        [I -> try I catch I . finally I , $, ; ] 
+        [I -> try I catch I .           , $, ; ]                        shift-reduce                        
+        [I -> I . ; I                   , finally, $, ; ] 
+
+
+    State 20:
+        [I -> try I catch I . finally I , catch, ; ] 
+        [I -> try I catch I .           , catch, ; ]                    shift-reduce                       
+        [I -> I . ; I                   , finally, catch, ; ] 
+
+    State 29:
+        [I -> try I catch I . finally I , finally, $, ; ] 
+        [I -> try I catch I .           , finally, $, ; ]               shift-reduce                         
+        [I -> I . ; I                   , finally, $, ; ] 
+
+
+    State 34:
+        [I -> try I catch I . finally I , finally, catch, ; ]
+        [I -> try I catch I .           , finally, catch, ; ]           shift-reduce                         
+        [I -> I . ; I                   , finally, catch, ; ] 
+
+    Escogemos hacer shift para cumplir que catch tenga menor precedencia que el ;
+    Ejemplo:
+        . try instr catch instr ; instr < shift
+        try . instr catch instr ; instr < shift
+        try instr . catch instr ; instr < reduce I0=instr
+        try . I0 catch instr ; instr    < shift 
+        try I0 . catch instr ; instr    < shift 
+        try I0 catch . instr ; instr    < shift 
+        try I0 catch instr . ; instr    < reduce I1=instr 
+        try I0 catch . I1  ; instr      < shift
+        try I0 catch I1 .  ; instr      < shift
+        try I0 catch I1  ; . instr      < shift
+        try I0 catch I1  ; instr .      < reduce I2=instr
+        try I0 catch I1  ; . I2         < shift
+        try I0 catch I1  ; I2 .         < (hay shift reduce, pero anteriormente dijimos que haremos reduce) reduce I3=(I1:I2)                     
+        try I0 catch . I3               < shift
+        try I0 catch I3 .               < reduce I4 = try I0 catch I3
+        I4                              < reduce S = I4
+        S
+
+    S = I4 = try I0 catch I3 = try instr catch (I1; I2) = try instr catch (instr; instr)
+
+try I catch try I catch I f inally I = try I catch (try I catch I finally I)
+
+. try I catch try I catch I finally I < shift
+try I . catch try I catch I finally I < shift
+try I catch . try I catch I finally I < shift
+try I catch try . I catch I finally I < shift
+try I catch try I . catch I finally I < shift
+try I catch try I catch . I finally I < shift
+try I catch try I catch I . finally I < (shift/reduce, pero decidimos hacer shift como antes)
+try I catch try I catch I finally . I < shift
+try I catch try I catch I finally I . < (shift/reduce, pero decidimos hacer reduce como mencionamos antes) I1=(try I catch I finally I)
+try I catch I1 .                      < reduce I2=(try I catch I1)
+I2                                    < reduce S=I2
+S
+
+S = I2 = (try I catch I1) = (try I catch (try I catch I finally I))
