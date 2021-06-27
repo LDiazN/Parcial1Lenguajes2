@@ -88,420 +88,218 @@ Graph:
 
 State 0:
     [S -> . I                       , $ ]  
-    [I -> . try I catch I finally I , $ ] 
-    [I -> . try I catch I           , $ ]
-    [I -> . I ; I                   , $ ]  
-    [I -> . instr                   , $ ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . instr                   , ; ] 
-    [I -> . I ; I                   , ; ] 
+    [I -> . try I catch I finally I , $, ; ] 
+    [I -> . try I catch I           , $, ; ]
+    [I -> . I ; I                   , $, ; ]  
+    [I -> . instr                   , $, ; ] 
 
 State 1:
     [ S -> I .                      , $ ]                   shift-reduce con las otras dos reglas de este estado                       
-    [ I -> I . ; I                  , $ ] 
-    [ I -> I . ; I                  , ; ]
+    [ I -> I . ; I                  , $, ; ] 
 
 State 2:
-    [I -> try . I catch I finally I , $ ]  
-    [I -> try . I catch I           , $ ]
-    [I -> try . I catch I finally I , ; ]  
-    [I -> try . I catch I           , ; ]  
-    [I -> . try I catch I finally I , catch ]  
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]  
+    [I -> try . I catch I finally I , $, ; ]  
+    [I -> try . I catch I           , $, ; ]
+    [I -> . try I catch I finally I , catch, ; ]  
+    [I -> . try I catch I           , catch, ; ] 
+    [I -> . I ; I                   , catch, ; ] 
+    [I -> . instr                   , catch, ; ] 
 
 State 3:
-    [I -> instr .                   , $ ]                                          
-    [I -> instr .                   , ; ]                                              
+    [I -> instr .                   , $, ; ]                                          
 
 State 4:
-    [ I -> I ; . I                  , $ ]                   
-    [ I -> I ; . I                  , ; ]                   
-    [I -> . try I catch I finally I , $ ]  
-    [I -> . try I catch I           , $ ]  
-    [I -> . I ; I                   , $ ]  
-    [I -> . instr                   , $ ]  
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]  
+    [ I -> I ; . I                  , $, ; ]                   
+    [I -> . try I catch I finally I , $, ; ]  
+    [I -> . try I catch I           , $, ; ]  
+    [I -> . I ; I                   , $, ; ]  
+    [I -> . instr                   , $, ; ]  
 
 State 5:
-    [I -> try I . catch I finally I , $ ] 
-    [I -> try I . catch I           , $ ]
-    [I -> try I . catch I finally I , ; ]  
-    [I -> try I . catch I           , ; ]
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ]  
+    [I -> try I . catch I finally I , $, ; ] 
+    [I -> try I . catch I           , $, ; ]
+    [I -> I . ; I                   , catch, ; ] 
 
 State 6:
-    [I -> try . I catch I finally I , catch ] 
-    [I -> try . I catch I           , catch ]
-    [I -> try . I catch I finally I , ; ]  
-    [I -> try . I catch I           , ; ]  
-    [I -> . try I catch I finally I , catch ]  
-    [I -> . try I catch I           , catch ]  
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ] 
+    [I -> try . I catch I finally I , catch, ; ] 
+    [I -> try . I catch I           , catch, ; ]
+    [I -> . try I catch I finally I , catch, ; ]  
+    [I -> . try I catch I           , catch, ; ]  
+    [I -> . I ; I                   , catch, ; ] 
+    [I -> . instr                   , catch, ; ] 
 
 State 7:
-    [I -> instr .                   , catch ]                                          
-    [I -> instr .                   , ; ]                                                  
+    [I -> instr .                   , catch, ; ]                                          
 
 State 8:
-    [ I -> I ; I .                  , $ ]                                                  
-    [ I -> I ; I .                  , ; ]                                              
+    [ I -> I ; I .                  , $, ; ]                                                  
 
 State 9:
-    [I -> try I catch . I finally I , $ ]   
-    [I -> try I catch . I           , $ ]
-    [I -> try I catch . I finally I , ; ]  
-    [I -> try I catch . I           , ; ]
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , $ ] 
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> try I catch . I finally I , $, ; ]   
+    [I -> try I catch . I           , $, ; ]
+    [I -> . try I catch I finally I , finally, $, ; ] 
+    [I -> . try I catch I           , finally, $, ; ] 
+    [I -> . I ; I                   , finally, $, ; ] 
+    [I -> . instr                   , finally, $, ; ] 
 
 State 10:
-    [ I -> I ; . I                  , catch ] 
-    [ I -> I ; . I                  , ; ]
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [ I -> I ; . I                  , catch, ; ] 
+    [I -> . try I catch I finally I , catch, ; ] 
+    [I -> . try I catch I           , catch, ; ] 
+    [I -> . I ; I                   , catch, ; ] 
+    [I -> . instr                   , catch, ; ]
 
 State 11:
-    [I -> try I . catch I finally I , catch ] 
-    [I -> try I . catch I           , catch ]
-    [I -> try I . catch I finally I , ; ]  
-    [I -> try I . catch I           , ; ]
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ]  
+    [I -> try I . catch I finally I , catch, ; ] 
+    [I -> try I . catch I           , catch, ; ]
+    [I -> I . ; I                   , catch, ; ] 
 
 State 12:
-    [I -> try I catch I . finally I , $ ] 
-    [I -> try I catch I .           , $ ]                   shift-reduce con las otras reglas de este estado                       
-    [I -> try I catch I . finally I , ; ]  
-    [I -> try I catch I .           , ; ]                   shift-reduce con las otras reglas de este estado                       
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , $ ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I . finally I , $, ; ] 
+    [I -> try I catch I .           , $, ; ]                   shift-reduce con las otras reglas de este estado                       
+    [I -> I . ; I                   , finally, $, ; ] 
 
 State 13:
-    [I -> try . I catch I finally I , finally ] 
-    [I -> try . I catch I           , finally ]
-    [I -> try . I catch I finally I , $ ] 
-    [I -> try . I catch I           , $ ] 
-    [I -> try . I catch I finally I , ; ] 
-    [I -> try . I catch I           , ; ] 
-    [I -> . try I catch I finally I , catch ]  
-    [I -> . try I catch I           , catch ]  
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ] 
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> try . I catch I finally I , finally, $, ; ] 
+    [I -> try . I catch I           , finally, $, ; ]
+    [I -> . try I catch I finally I , catch, ; ]  
+    [I -> . try I catch I           , catch, ; ]  
+    [I -> . I ; I                   , catch, ; ] 
+    [I -> . instr                   , catch, ; ] 
 
 State 14:
-    [I -> instr .                   , finally ]                                         
-    [I -> instr .                   , $ ]                                         
-    [I -> instr .                   , ; ]                                         
+    [I -> instr .                   , finally, $, ; ]                                         
 
 State 15:
-    [ I -> I ; I .                  , catch ]            shift-reduce con las otras reglas de este estado                           
-    [ I -> I ; I .                  , ; ]                shift-reduce con las otras reglas de este estado                                         
-    [I ->  I . ; I                  , catch ] 
-    [I ->  I . ; I                  , ; ] 
+    [ I -> I ; I .                  , catch, ; ]            shift-reduce con las otras reglas de este estado                           
+    [I ->  I . ; I                  , catch, ; ] 
 
 State 16:
-    [I -> try I catch . I finally I , catch ] 
-    [I -> try I catch . I           , catch ]
-    [I -> try I catch . I finally I , ; ]  
-    [I -> try I catch . I           , ; ]
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ]
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> try I catch . I finally I , catch, ; ] 
+    [I -> try I catch . I           , catch, ; ]
+    [I -> . try I catch I finally I , finally, catch, ; ] 
+    [I -> . try I catch I           , finally, catch, ; ] 
+    [I -> . I ; I                   , finally, catch, ; ] 
+    [I -> . instr                   , finally, catch, ; ]
 
 State 17:
-    [I -> try I catch I finally . I , $ ]
-    [I -> try I catch I finally . I , ; ] 
-    [I -> . try I catch I finally I , $ ] 
-    [I -> . try I catch I            , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> try I catch I finally . I , $, ; ]
+    [I -> . try I catch I finally I , $, ; ] 
+    [I -> . try I catch I           , $, ; ] 
+    [I -> . I ; I                   , $, ; ] 
+    [I -> . instr                   , $, ; ]
 
 
 State 18
-    [I -> I ; . I                   , finally ] 
-    [I -> I ; . I                   , $ ]
-    [I -> I ; . I                   , ; ]
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , $ ] 
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> I ; . I                   , finally, $, ; ] 
+    [I -> . try I catch I finally I , finally, $, ; ] 
+    [I -> . try I catch I           , finally, $, ; ] 
+    [I -> . I ; I                   , finally, $, ; ] 
+    [I -> . instr                   , finally, $, ; ] 
 
 State 19:
-    [I -> try I . catch I finally I , finally ] 
-    [I -> try I . catch I           , finally ]
-    [I -> try I . catch I finally I , $ ] 
-    [I -> try I . catch I           , $ ] 
-    [I -> try I . catch I finally I , ; ] 
-    [I -> try I . catch I           , ; ] 
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I . catch I finally I , finally, $, l ] 
+    [I -> try I . catch I           , finally, $, l ]
+    [I -> I . ; I                   , finally, $, l ] 
 
 State 20:
-    [I -> try I catch I . finally I , catch ] 
-    [I -> try I catch I .           , catch ]                   shift-reduce                       
-    [I -> try I catch I . finally I , ; ]  
-    [I -> try I catch I .           , ; ]                       shift-reduce                       
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I . finally I , catch, ; ] 
+    [I -> try I catch I .           , catch, ; ]                   shift-reduce                       
+    [I -> I . ; I                   , finally, catch, ; ] 
 
 State 21:
-    [I -> try . I catch I finally I , finally ] 
+    [I -> try . I catch I finally I , finally, catch, ; ] 
     [I -> try . I catch I           , finally ]
-    [I -> try . I catch I finally I , catch ] 
-    [I -> try . I catch I           , catch ] 
-    [I -> try . I catch I finally I , ; ] 
-    [I -> try . I catch I           , ; ] 
-    [I -> . try I catch I finally I , catch ]  
-    [I -> . try I catch I           , catch ]  
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ] 
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> . try I catch I finally I , finally, catch, ; ]  
+    [I -> . try I catch I           , finally, catch, ; ]  
+    [I -> . I ; I                   , finally, catch, ; ] 
+    [I -> . instr                   , finally, catch, ; ] 
 
 State 22:
-    [I -> instr .                   , finally ]                                          
-    [I -> instr .                   , catch ]                                          
-    [I -> instr .                   , ; ]                                          
+    [I -> instr .                   , finally, catch, ; ]                                          
 
 State 23:
-    [I -> try I catch I finally I . , $ ] 
-    [I -> try I catch I finally I . , ; ] 
-    [I -> I . ; I                   , $ ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I finally I . , $, ; ] 
+    [I -> I . ; I                   , $, ; ] 
 
 State 24:
-    [I -> I ; I .                   , finally ]             shift-reduce                         
-    [I -> I ; I .                   , $ ]                   shift-reduce                       
-    [I -> I ; I .                   , ; ]                   shift-reduce                       
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , $ ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> I ; I .                   , finally, $, ; ]             shift-reduce                         
+    [I -> I . ; I                   , finally, $, ; ] 
 
 State 25:
-    [I -> try I catch . I finally I , finally ] 
-    [I -> try I catch . I           , finally ]
-    [I -> try I catch . I finally I , $ ] 
-    [I -> try I catch . I           , $ ] 
-    [I -> try I catch . I finally I , ; ] 
-    [I -> try I catch . I           , ; ]
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , $ ] 
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> try I catch . I finally I , finally, $, ; ] 
+    [I -> try I catch . I           , finally, $, ; ]
+    [I -> . try I catch I finally I , finally, $, ; ] 
+    [I -> . try I catch I           , finally, $, ; ] 
+    [I -> . I ; I                   , finally, $, ; ] 
+    [I -> . instr                   , finally, $, ; ] 
 
 State 26
-    [I -> try I catch I finally . I , catch ] 
-    [I -> try I catch I finally . I , ; ]
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ] 
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]  
+    [I -> try I catch I finally . I , catch, ; ] 
+    [I -> . try I catch I finally I , catch, ; ] 
+    [I -> . try I catch I           , catch, ; ] 
+    [I -> . I ; I                   , catch, ; ] 
+    [I -> . instr                   , catch, ; ] 
 
 State 27:
-    [I -> I ; . I                   , finally ] 
-    [I -> I ; . I                   , catch ] 
-    [I -> I ; . I                   , ; ]
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ]
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ] 
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]  
+    [I -> I ; . I                   , finally, catch, ; ] 
+    [I -> . try I catch I finally I , finally, catch, ; ] 
+    [I -> . try I catch I           , finally, catch, ; ] 
+    [I -> . I ; I                   , finally, catch, ; ] 
+    [I -> . instr                   , finally, catch, ; ]
 
 State 28:
-    [I -> try I . catch I finally I , finally ] 
-    [I -> try I . catch I           , finally ]
-    [I -> try I . catch I finally I , catch ] 
-    [I -> try I . catch I           , catch ] 
-    [I -> try I . catch I finally I , ; ] 
-    [I -> try I . catch I          , ; ] 
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I . catch I finally I , finally, catch. ; ] 
+    [I -> I . ; I                   , finally, catch. ; ] 
 
 State 29:
-    [I -> try I catch I . finally I , finally ] 
-    [I -> try I catch I .           , finally ]             shift-reduce                         
-    [I -> try I catch I . finally I , $ ] 
-    [I -> try I catch I .           , $ ]                   shift-reduce                           
-    [I -> try I catch I . finally I , ; ] 
-    [I -> try I catch I .           , ; ]                   shift-reduce                       
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , $ ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I . finally I , finally, $, ; ] 
+    [I -> try I catch I .           , finally, $, ; ]             shift-reduce                         
+    [I -> I . ; I                   , finally, $, ; ] 
 
 State 30
-    [I -> try I catch I finally I . , catch ]
-    [I -> try I catch I finally I . , ; ]
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I finally I . , catch, ; ]
+    [I -> I . ; I                   , catch, ; ] 
 
 State 31:
-    [I -> I ; I .                   , finally ]                 shift-reduce                         
-    [I -> I ; I .                   , catch ]                   shift-reduce                           
-    [I -> I ; I .                   , ; ]                       shift-reduce                       
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> I ; I .                   , finally, catch, ; ]                 shift-reduce                         
+    [I -> I . ; I                   , finally, catch, ; ] 
 
 State 32:
-    [I -> try I catch . I finally I , finally ] 
-    [I -> try I catch . I           , finally ]
-    [I -> try I catch . I finally I , catch ] 
-    [I -> try I catch . I           , catch ] 
-    [I -> try I catch . I finally I , ; ] 
-    [I -> try I catch . I           , ; ] 
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ]
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ]
+    [I -> try I catch . I finally I , finally, catch, ; ] 
+    [I -> try I catch . I           , finally, catch, ; ]
+    [I -> . try I catch I finally I , finally, catch, ; ] 
+    [I -> . try I catch I           , finally, catch, ; ] 
+    [I -> . I ; I                   , finally, catch, ; ] 
+    [I -> . instr                   , finally, catch, ; ]
+
 
 State 33:
-    [I -> try I catch I finally . I , finally ] 
-    [I -> try I catch I finally . I , $ ] 
-    [I -> try I catch I finally . I , ; ]
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , $ ] 
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ] 
+    [I -> try I catch I finally . I , finally, $, ; ] 
+    [I -> . try I catch I finally I , finally, $, ; ] 
+    [I -> . try I catch I           , finally, $, ; ] 
+    [I -> . I ; I                   , finally, $, ; ] 
+    [I -> . instr                   , finally, $, ; ] 
 
 State 34:
-    [I -> try I catch I . finally I , finally ]
-    [I -> try I catch I .           , finally ]                 shift-reduce                         
-    [I -> try I catch I . finally I , catch ] 
-    [I -> try I catch I .           , catch ]                   shift-reduce                           
-    [I -> try I catch I . finally I , ; ] 
-    [I -> try I catch I .           , ; ]                       shift-reduce                           
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I . finally I , finally, catch, ; ]
+    [I -> try I catch I .           , finally, catch, ; ]       shift-reduce                         
+    [I -> I . ; I                   , finally, catch, ; ] 
 
 State 35:
-    [I -> try I catch I finally I . , finally ]                 shift-reduce                
-    [I -> try I catch I finally I . , $ ]                       shift-reduce
-    [I -> try I catch I finally I . , ; ]                       shift-reduce
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , $ ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I finally I . , finally, $, ; ]           shift-reduce                
+    [I -> I . ; I                   , finally, $, ; ] 
 
 State 36:
-    [I -> try I catch I finally . I , finally ] 
-    [I -> try I catch I finally . I , catch ] 
-    [I -> try I catch I finally . I , ; ] 
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ] 
-    [I -> . instr                   , catch ]
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ] 
+    [I -> try I catch I finally . I , finally, catch, ; ] 
+    [I -> . try I catch I finally I , finally, catch, ; ] 
+    [I -> . try I catch I           , finally, catch, ; ] 
+    [I -> . I ; I                   , finally, catch, ; ] 
+    [I -> . instr                   , finally, catch, ; ] 
     
 State 37:
-    [I -> try I catch I finally I . , finally ]                 shift-reduce            
-    [I -> try I catch I finally I . , catch ]                   shift-reduce    
-    [I -> try I catch I finally I . , ; ]                       shift-reduce
-    [I -> I . ; I                   , finally ] 
-    [I -> I . ; I                   , catch ] 
-    [I -> I . ; I                   , ; ] 
+    [I -> try I catch I finally I . , finally, catch, ; ]                 shift-reduce            
+    [I -> I . ; I                   , finally, catch, ; ] 
 
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
