@@ -1,6 +1,3 @@
-
-
-Pendiente, revisar el estado 2 y los shift desde 0 a 2
 Grammar: 
     S -> I                                
     I -> try I catch I finally I 
@@ -10,160 +7,90 @@ Grammar:
 
 Graph:
     from to, transition
-    0 1, try
-    0 3, I
-    0 4, inst
-    0 5, try
-    0 7, I
-    0 8, instr
-    1 9, I
-    1 10, try
-    1 12, I
-    1 13, instr
-    1 5, try
-    1 7, I
-    1 8, instr
-    2 9, I
-    2 10, try
-    2 12, I
-    2 13, instr 
-    2 5, try
-    2 7, I
-    2 8, instr
-    3 15, ;
-    5 16, I
-    5 10, try
-    5 12, I
-    5 13, instr
-    5 5, try
-    5 7, I
-    5 8, instr
-    6 17, I
-    6 10, try
-    6 12, I
-    6 13, instr
-    6 5, try
-    6 7, I
-    6 8, instr
-    7 18, ;
-    9 19, catch
-    10 10, try
-    10 12, I
-    10 13, instr
-    10 5, try
-    10 7, I
-    10 8, instr
-    11 10, try
-    11 12, I
-    11 13, instr
-    11 5, try
-    11 7, I
-    11 8, instr
-    12 21, ;
-    14 22, catch
-    15 23, I
-    15 1, try
-    15 3, I
-    15 4, instr
-    15 5, try
-    15 7, I
-    15 8, instr
-    17 24, catch
-    18 5, try
-    18 7, I
-    18 8, instr
-    19 26, I
-    19 27, try
-    19 29, I
-    19 30, instr
-    19 5, try
-    19 7, I
-    19 8, instr
-    20 31, catch
-    21 32, catch
-    21 10, try
-    21 12, I
-    21 13, instr
-    21 5, try
-    21 7, I
-    21 8, instr
-    22 33, I
-    22 1, try
-    22 3, I
-    22 4, instr
-    22 5, try
-    22 7, I
-    22 8, instr
-    24 34, I
-    24 5, try
-    24 7, I
-    24 8, instr
-    26 35, finally
-    27 36, I
-    27 10, try
-    27 12, I
-    27 13, instr
-    27 5, try
-    27 7, I
-    27 8, instr
-    28 10, try
-    28 12, I
-    28 13, instr
-    28 5, try
-    28 7, I
-    28 8, instr
-    29 38, ;   
-    31 39, I
-    31 10, try
-    31 12, I
-    31 13, instr 
-    31 5, try
-    31 7, I
-    31 8, instr
-    35 40, I
-    35 1, try
-    35 3, I
-    35 4, instr
-    35 5, try
-    35 7, I
-    35 8, instr
-    36 41, catch
-    37 42, catch
-    38 43, I
-    38 27, try
-    38 29, I
-    38 30, instr
-    38 5, try
-    38 7, I
-    38 8, instr
-    41 44, I
-    41 27, try
-    41 29, I
-    41 30, instr
-    41 5, try
-    41 7, I
-    41 8, instr
-    42 45, I
-    44 46, finally
-    46 47, I
-    46 27, try
-    46 29, I
-    46 30, instr
-    46 5, try
-    46 7, I
-    46 8, instr
+    0 1, I
+    0 2, try
+    0 3, instr
+    1 4, ;
+    2 5, I
+    2 6, try
+    2 7, instr 
+    4 8, I
+    4 2, try
+    4 3, instr
+    5 9, catch
+    5 10, ;
+    6 11, I
+    6 6, try
+    6 7, instr
+    9 12, I
+    9 13, try
+    9 14, instr
+    10 15, I
+    10 6, try
+    10 7, instr
+    11 16, catch
+    11 10, ;
+    12 17 finally
+    12 18, ;
+    13 19, I
+    13 6, try
+    13 7, instr
+    15 10, ;
+    16 20, I
+    16 21, try
+    16 22, instr
+    17 23, I
+    17 2, try
+    17 3, instr
+    18 24, I
+    18 13, try
+    18 14, instr
+    19 25, catch
+    19 10, ;
+    20 26, finally
+    20 27, ;
+    21 28, I
+    21 6, try
+    21 7, ;
+    23 4, ;
+    24 18, ;
+    25 29, I
+    25 13, try
+    25 14, instr
+    26 30, I
+    26 6, try
+    26 7, instr
+    27 31, I
+    27 21, try
+    27 22, instr
+    28 32, catch
+    28 10, ;
+    29 33, finally
+    29 18, ;
+    30 10, ;
+    31 27, ;
+    31 34, I
+    32 21, try
+    32 21, instr
+    33 35, I
+    33 13, try
+    33 14, instr
+    34 36, finally
+    34 27, ;
+    35 18, ;
+    36 37, I
+    36 21, try
+    36 22, instr
+    37 27, ;
 
-Pending sources to correct:
-    2
-    6
-    11
-    28
+
+
 
 State 0:
-    [S -> . I                       , $ ] < 
-    [I -> . try I catch I finally I , $ ]
+    [S -> . I                       , $ ]  
+    [I -> . try I catch I finally I , $ ] 
     [I -> . try I catch I           , $ ]
-    [I -> . I ; I                   , $ ]
+    [I -> . I ; I                   , $ ]  
     [I -> . instr                   , $ ] 
     [I -> . try I catch I finally I , ; ]  
     [I -> . try I catch I           , ; ]  
@@ -171,9 +98,16 @@ State 0:
     [I -> . I ; I                   , ; ] 
 
 State 1:
+    [ S -> I .                      , $ ]
+    [ I -> I . ; I                  , $ ] 
+    [ I -> I . ; I                  , ; ]
+
+State 2:
     [I -> try . I catch I finally I , $ ]  
-    [I -> try . I catch I           , $]  
-    [I -> . try I catch I finally I , catch ] 
+    [I -> try . I catch I           , $ ]
+    [I -> try . I catch I finally I , ; ]  
+    [I -> try . I catch I           , ; ]  
+    [I -> . try I catch I finally I , catch ]  
     [I -> . try I catch I           , catch ] 
     [I -> . I ; I                   , catch ] 
     [I -> . instr                   , catch ] 
@@ -183,36 +117,34 @@ State 1:
     [I -> . instr                   , ; ]  
 
 State 3:
-    [I -> I . ; I                   , $ ]  
+    [I -> instr .                   , $ ]
+    [I -> instr .                   , ; ]  
 
 State 4:
-    [I -> instr .                   , $ ]  
-
-State 5:
-    [I -> try . I catch I finally I , ; ]  
-    [I -> try . I catch I           , ; ]  
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ]  
-    [I -> . I ; I                   , catch ]  
-    [I -> . instr                   , catch ]  
+    [ I -> I ; . I                  , $ ] 
+    [ I -> I ; . I                  , ; ]
+    [I -> . try I catch I finally I , $ ]  
+    [I -> . try I catch I           , $ ]  
+    [I -> . I ; I                   , $ ]  
+    [I -> . instr                   , $ ]  
     [I -> . try I catch I finally I , ; ]  
     [I -> . try I catch I           , ; ]  
     [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]   
+    [I -> . instr                   , ; ]  
 
-State 7:
+State 5:
+    [I -> try I . catch I finally I , $ ] 
+    [I -> try I . catch I           , $ ]
+    [I -> try I . catch I finally I , ; ]  
+    [I -> try I . catch I           , ; ]
+    [I -> I . ; I                   , catch ] 
     [I -> I . ; I                   , ; ]  
 
-State 8:
-    [I -> instr .                   , ; ] 
-    
-State 9:
-    [I -> try I . catch I finally I , $ ]  
-    [I -> try I . catch I           , $]  
-
-State 10:
-    [I -> try . I catch I finally I , catch ]
-    [I -> try . I catch I           , catch ]  
+State 6:
+    [I -> try . I catch I finally I , catch ] 
+    [I -> try . I catch I           , catch ]
+    [I -> try . I catch I finally I , ; ]  
+    [I -> try . I catch I           , ; ]  
     [I -> . try I catch I finally I , catch ]  
     [I -> . try I catch I           , catch ]  
     [I -> . I ; I                   , catch ] 
@@ -222,193 +154,354 @@ State 10:
     [I -> . I ; I                   , ; ]  
     [I -> . instr                   , ; ] 
 
+State 7:
+    [I -> instr .                   , catch ]
+    [I -> instr .                   , ; ]   
+
+State 8:
+    [ I -> I ; I .                  , $ ] 
+    [ I -> I ; I .                  , ; ]
+
+State 9:
+    [I -> try I catch . I finally I , $ ]   
+    [I -> try I catch . I           , $ ]
+    [I -> try I catch . I finally I , ; ]  
+    [I -> try I catch . I           , ; ]
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ] 
+    [I -> . try I catch I finally I , $ ] 
+    [I -> . try I catch I           , $ ] 
+    [I -> . I ; I                   , $ ] 
+    [I -> . instr                   , $ ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 10:
+    [ I -> I ; . I                  , catch ] 
+    [ I -> I ; . I                  , ; ]
+    [I -> . try I catch I finally I , catch ] 
+    [I -> . try I catch I           , catch ] 
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 11:
+    [I -> try I . catch I finally I , catch ] 
+    [I -> try I . catch I           , catch ]
+    [I -> try I . catch I finally I , ; ]  
+    [I -> try I . catch I           , ; ]
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ]  
+
 State 12:
-    [I ->  I . ; I                   , catch ]  
+    [I -> try I catch I . finally I , $ ] 
+    [I -> try I catch I .           , $ ]
+    [I -> try I catch I . finally I , ; ]  
+    [I -> try I catch I .           , ; ]
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , $ ] 
+    [I -> I . ; I                   , ; ] 
 
 State 13:
-    [I -> instr .                   , catch ] 
-
-State 15:
-    [I -> I ; . I                   , $ ]  
-    [I -> . try I catch I finally I , $ ]  
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ] 
-
-State 16:
-    [I -> try I . catch I finally I , ; ]
-
-State 17:
-    [I -> try I . catch I           , ; ] 
-
-State 18:
-    [I -> I ; . I                   , ; ] 
-    [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]  
-
-State 19:
-    [I -> try I catch . I finally I , $ ]  
-    [I -> . try I catch I finally I , finally ] 
-    [I -> . try I catch I           , finally ]  
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ] 
-    [I -> . I ; I                   , ; ] 
-    [I -> . instr                   , ; ] 
-
-State 20:
-    [I -> try I . catch I           , catch ]  
-
-State 21:
-    [I -> I ; . I                   , catch ]  
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ]
+    [I -> try . I catch I finally I , finally ] 
+    [I -> try . I catch I           , finally ]
+    [I -> try . I catch I finally I , $ ] 
+    [I -> try . I catch I           , $ ] 
+    [I -> try . I catch I finally I , ; ] 
+    [I -> try . I catch I           , ; ] 
+    [I -> . try I catch I finally I , catch ]  
+    [I -> . try I catch I           , catch ]  
+    [I -> . I ; I                   , catch ] 
     [I -> . instr                   , catch ] 
     [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ]
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 14:
+    [I -> instr .                   , finally ]
+    [I -> instr .                   , $ ]
+    [I -> instr .                   , ; ]
+
+State 15:
+    [ I -> I ; I .                  , catch ] 
+    [ I -> I ; I .                  , ; ]
+    [I ->  I . ; I                  , catch ] 
+    [I ->  I . ; I                  , ; ] 
+
+State 16:
+    [I -> try I catch . I finally I , catch ] 
+    [I -> try I catch . I           , catch ]
+    [I -> try I catch . I finally I , ; ]  
+    [I -> try I catch . I           , ; ]
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ]
+    [I -> . try I catch I finally I , catch ] 
+    [I -> . try I catch I           , catch ] 
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 17:
+    [I -> try I catch I finally . I , $ ]
+    [I -> try I catch I finally . I , ; ] 
+    [I -> . try I catch I finally I , $ ] 
+    [I -> . try I catch I            , $ ] 
+    [I -> . I ; I                   , $ ] 
+    [I -> . instr                   , $ ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+
+State 18
+    [I -> I ; . I                   , finally ] 
+    [I -> I ; . I                   , $ ]
+    [I -> I ; . I                   , ; ]
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ] 
+    [I -> . try I catch I finally I , $ ] 
+    [I -> . try I catch I           , $ ] 
+    [I -> . I ; I                   , $ ] 
+    [I -> . instr                   , $ ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 19:
+    [I -> try I . catch I finally I , finally ] 
+    [I -> try I . catch I           , finally ]
+    [I -> try I . catch I finally I , $ ] 
+    [I -> try I . catch I           , $ ] 
+    [I -> try I . catch I finally I , ; ] 
+    [I -> try I . catch I           , ; ] 
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
+
+State 20:
+    [I -> try I catch I . finally I , catch ] 
+    [I -> try I catch I .           , catch ]
+    [I -> try I catch I . finally I , ; ]  
+    [I -> try I catch I .           , ; ]
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
+
+State 21:
+    [I -> try . I catch I finally I , finally ] 
+    [I -> try . I catch I           , finally ]
+    [I -> try . I catch I finally I , catch ] 
+    [I -> try . I catch I           , catch ] 
+    [I -> try . I catch I finally I , ; ] 
+    [I -> try . I catch I           , ; ] 
+    [I -> . try I catch I finally I , catch ]  
+    [I -> . try I catch I           , catch ]  
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ] 
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 22:
+    [I -> instr .                   , finally ]
+    [I -> instr .                   , catch ]
+    [I -> instr .                   , ; ]
+
+State 23:
+    [I -> try I catch I finally I . , $ ] 
+    [I -> try I catch I finally I . , ; ] 
+    [I -> I . ; I                   , $ ] 
+    [I -> I . ; I                   , ; ] 
+
+State 24:
+    [I -> I ; I .                   , finally ] 
+    [I -> I ; I .                   , $ ]
+    [I -> I ; I .                   , ; ]
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , $ ] 
+    [I -> I . ; I                   , ; ] 
+
+State 25:
+    [I -> try I catch . I finally I , finally ] 
+    [I -> try I catch . I           , finally ]
+    [I -> try I catch . I finally I , $ ] 
+    [I -> try I catch . I           , $ ] 
+    [I -> try I catch . I finally I , ; ] 
+    [I -> try I catch . I           , ; ]
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ] 
+    [I -> . try I catch I finally I , $ ] 
+    [I -> . try I catch I           , $ ] 
+    [I -> . I ; I                   , $ ] 
+    [I -> . instr                   , $ ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 26
+    [I -> try I catch I finally . I , catch ] 
+    [I -> try I catch I finally . I , ; ]
+    [I -> . try I catch I finally I , catch ] 
+    [I -> . try I catch I           , catch ] 
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ] 
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]  
+
+State 27:
+    [I -> I ; . I                   , finally ] 
+    [I -> I ; . I                   , catch ] 
+    [I -> I ; . I                   , ; ]
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ]
+    [I -> . try I catch I finally I , catch ] 
+    [I -> . try I catch I           , catch ] 
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ] 
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]  
+
+State 28:
+    [I -> try I . catch I finally I , finally ] 
+    [I -> try I . catch I           , finally ]
+    [I -> try I . catch I finally I , catch ] 
+    [I -> try I . catch I           , catch ] 
+    [I -> try I . catch I finally I , ; ] 
+    [I -> try I . catch I          , ; ] 
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
+
+State 29:
+    [I -> try I catch I . finally I , finally ] 
+    [I -> try I catch I .           , finally ]
+    [I -> try I catch I . finally I , $ ] 
+    [I -> try I catch I .           , $ ] 
+    [I -> try I catch I . finally I , ; ] 
+    [I -> try I catch I .           , ; ]
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , $ ] 
+    [I -> I . ; I                   , ; ] 
+
+State 30
+    [I -> try I catch I finally I . , catch ]
+    [I -> try I catch I finally I . , ; ]
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
+
+State 31:
+    [I -> I ; I .                   , finally ] 
+    [I -> I ; I .                   , catch ] 
+    [I -> I ; I .                   , ; ]
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
+
+State 32:
+    [I -> try I catch . I finally I , finally ] 
+    [I -> try I catch . I           , finally ]
+    [I -> try I catch . I finally I , catch ] 
+    [I -> try I catch . I           , catch ] 
+    [I -> try I catch . I finally I , ; ] 
+    [I -> try I catch . I           , ; ] 
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ]
+    [I -> . try I catch I finally I , catch ] 
+    [I -> . try I catch I           , catch ] 
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ]
+
+State 33:
+    [I -> try I catch I finally . I , finally ] 
+    [I -> try I catch I finally . I , $ ] 
+    [I -> try I catch I finally . I , ; ]
+    [I -> . try I catch I finally I , finally ] 
+    [I -> . try I catch I           , finally ] 
+    [I -> . I ; I                   , finally ] 
+    [I -> . instr                   , finally ] 
+    [I -> . try I catch I finally I , $ ] 
+    [I -> . try I catch I           , $ ] 
+    [I -> . I ; I                   , $ ] 
+    [I -> . instr                   , $ ]
+    [I -> . try I catch I finally I , ; ] 
+    [I -> . try I catch I           , ; ] 
     [I -> . I ; I                   , ; ] 
     [I -> . instr                   , ; ] 
 
-State 22:
-    [I -> try I catch . I           , $ ]   
-    [I -> . try I catch I finally I , $ ]  
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
-
-State 23:
-    [I -> I ; I .                   , $ ] 
-
-State 24:
-    [I -> try I catch . I           , ; ]  
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
-
-State 25:
-    [I -> I ; I .                   , ; ]
-
-State 26:
-    [I -> try I catch I . finally I , $ ] 
-
-State 27:
-    [I -> try . I catch I finally I , finally ]
-    [I -> try . I catch I           , finally ]  
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ] 
-    [I -> . I ; I                   , catch ]  
-    [I -> . instr                   , catch ]
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
-    
-State 29:
-    [I -> I . ; I                   , finally ] 
-
-State 30:
-    [I -> instr .                   , finally ] 
-
-State 31:
-    [I -> try I catch . I           , catch ]  
-    [I -> . try I catch I finally I , catch ] 
-    [I -> . try I catch I           , catch ]  
-    [I -> . I ; I                   , catch ]  
-    [I -> . instr                   , catch ]
-    [I -> . try I catch I finally I , ; ]
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
-
-State 32:
-    [I -> I ; I .                   , catch ]
-
-State 33:
-    [I -> try I catch I .           , $ ]
-
 State 34:
-    [I -> try I catch I .           , ; ]
+    [I -> try I catch I . finally I , finally ]
+    [I -> try I catch I .           , finally ]
+    [I -> try I catch I . finally I , catch ] 
+    [I -> try I catch I .           , catch ] 
+    [I -> try I catch I . finally I , ; ] 
+    [I -> try I catch I .           , ; ] 
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
 
 State 35:
-    [I -> try I catch I finally . I , $ ]  
-    [I -> . try I catch I finally I , $ ]  
-    [I -> . try I catch I           , $ ] 
-    [I -> . I ; I                   , $ ] 
-    [I -> . instr                   , $ ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
+    [I -> try I catch I finally I . , finally ] 
+    [I -> try I catch I finally I . , $ ] 
+    [I -> try I catch I finally I . , ; ]
+    [I -> I . ; I                   , finally ] 
+    [I -> I . ; I                   , $ ] 
+    [I -> I . ; I                   , ; ] 
 
 State 36:
-    [I -> try I . catch I finally I , finally ] 
-
-State 37:
-    [I -> try I . catch I           , finally ]  
-
-State 38:
-    [I -> I ; . I                   , finally ] 
-    [I -> . try I catch I finally I , finally ]  
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
-
-State 39:
-    [I -> try I catch I .           , catch ] 
-
-State 40:
-    [I -> try I catch I finally I . , $ ]
-
-State 41:
-    [I -> try I catch . I finally I , finally ] 
-    [I -> . try I catch I finally I , finally ]  
-    [I -> . try I catch I           , finally ] 
-    [I -> . I ; I                   , finally ] 
-    [I -> . instr                   , finally ] 
-    [I -> . try I catch I finally I , ; ]  
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
-
-State 42:
-    [I -> try I catch . I           , finally ]
-
-State 43:
-    [I -> I ; I .                   , finally ]
-
-State 44:
-    [I -> try I catch I . finally I , finally ] 
-
-State 45:
-    [I -> try I catch I .           , finally ]
-
-State 46:
     [I -> try I catch I finally . I , finally ] 
-    [I -> . try I catch I finally I , finally ]  
+    [I -> try I catch I finally . I , catch ] 
+    [I -> try I catch I finally . I , ; ] 
+    [I -> . try I catch I finally I , finally ] 
     [I -> . try I catch I           , finally ] 
     [I -> . I ; I                   , finally ] 
     [I -> . instr                   , finally ] 
+    [I -> . try I catch I finally I , catch ] 
+    [I -> . try I catch I           , catch ] 
+    [I -> . I ; I                   , catch ] 
+    [I -> . instr                   , catch ]
     [I -> . try I catch I finally I , ; ] 
-    [I -> . try I catch I           , ; ]  
-    [I -> . I ; I                   , ; ]  
-    [I -> . instr                   , ; ]
+    [I -> . try I catch I           , ; ] 
+    [I -> . I ; I                   , ; ] 
+    [I -> . instr                   , ; ] 
+    
+State 37:
+    [I -> try I catch I finally I . , finally ] 
+    [I -> try I catch I finally I . , catch ] 
+    [I -> try I catch I finally I . , ; ] 
+    [I -> I . ; I                   , finally ] <
+    [I -> I . ; I                   , catch ] 
+    [I -> I . ; I                   , ; ] 
 
-State 47:
-    [I -> try I catch I finally I . , finally ]
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
