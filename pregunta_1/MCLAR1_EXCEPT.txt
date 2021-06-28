@@ -1,0 +1,138 @@
+Vamos a construir la maquina característica LALR1 basados
+en la gramática LR1 que tenemos hasta ahora.
+
+Graph:
+    from to, transition
+    0                   1, I
+    0                   (2, 6, 13, 21), try
+    1                   (4, 10, 18, 27) ;
+    1                   38, $
+    (17, 26, 33, 36)    (2, 6, 13, 21), try
+    (2, 6, 13, 21)      (2, 6, 13, 21), try
+    (4, 10, 18, 27)     (2, 6, 13, 21), try
+    (9, 16, 25, 32)     (2, 6, 13, 21), try
+    (4, 10, 18, 27)     (2, 6, 13, 21), try
+    (4, 10, 18, 27)     (2, 6, 13, 21), try
+    (2, 6, 13, 21)      (5, 11, 19, 28), I
+    (2, 6, 13, 21)      (3, 7, 14, 22), instr
+    (2, 6, 13, 21)      (3, 7, 14, 22), ;
+    0                   (3, 7, 14, 22), instr
+    (4, 10, 18, 27)     (3, 7, 14, 22), instr
+    (17, 26, 33, 36)    (3, 7, 14, 22), instr
+    (2, 6, 13, 21)      (3, 7, 14, 22), instr 
+    (4, 10, 18, 27)     (3, 7, 14, 22), instr
+    (9, 16, 25, 32)     (2, 6, 13, 21), instr
+    (4, 10, 18, 27)     (2, 6, 13, 21), instr
+    (17, 26, 33, 36)    (2, 6, 13, 21), instr
+    (4, 10, 18, 27)     (2, 6, 13, 21), instr
+    1                   (4, 10, 18, 27), ;
+    (8, 15, 24, 31)     (4, 10, 18, 27), ;
+    (23, 30, 35, 37)    (4, 10, 18, 27), ;
+    (12, 20, 29, 34)    (4, 10, 18, 27), ;
+    (4, 10, 18, 27)     (8, 15, 24, 31), I
+    (4, 10, 18, 27)     (2, 6, 13, 21), try
+    (4, 10, 18, 27)     (3, 7, 14, 22), instr
+    (2, 6, 13, 21)      (5, 11, 19, 28), I
+    (5, 11, 19, 28)     (9, 16, 25, 32), catch
+    (5, 11, 19, 28)     (4, 10, 18, 27), ;
+    (9, 16, 25, 32)     (12, 20, 29, 34), I
+    (12, 20, 29, 34)    (17, 26, 33, 36), finally
+    (17, 26, 33, 36)    (23, 30, 35, 37), I
+
+
+State 0:
+    [S -> . I $                     , $ ]  
+    [I -> . try I catch I finally I , $, ; ] 
+    [I -> . try I catch I           , $, ; ]
+    [I -> . I ; I                   , $, ; ]  
+    [I -> . instr                   , $, ; ] 
+
+
+State 1:
+    [ S -> I . $                    , $ ]                   shift-reduce                 
+    [ I -> I . ; I                  , $, ; ] 
+
+
+State 2, 6, 13, 21: 
+    [I -> try . I catch I finally I , finally, catch, $, ; ]  
+    [I -> try . I catch I           , finally, catch, $, ; ]
+    [I -> . try I catch I finally I , finally, catch, ; ]  
+    [I -> . try I catch I           , finally, catch, ; ] 
+    [I -> . I ; I                   , finally, catch, ; ] 
+    [I -> . instr                   , finally, catch, ; ] 
+
+State 3, 7, 14, 22:
+    [I -> instr .                   , finally, catch, $, ; ]  
+
+State 4, 10, 18, 27: 
+    [I -> I ; . I                   , $, ; ]                   
+    [I -> . try I catch I finally I , $, ; ]  
+    [I -> . try I catch I           , $, ; ]  
+    [I -> . I ; I                   , $, ; ]  
+    [I -> . instr                   , $, ; ] 
+
+State 5, 11, 19, 28: 
+    [I -> try I . catch I finally I , finally, catch, $, ; ] 
+    [I -> try I . catch I           , finally, catch, $, ; ]
+    [I -> I . ; I                   , finally, catch, ; ] 
+
+State 8, 15, 24, 31:
+    [ I -> I ; I .                  , finally, catch, $, ; ]                shift-reduce 
+    [ I ->  I . ; I                 , finally, catch, $, ; ]  
+
+State 9, 16, 25, 32: 
+    [I -> try I catch . I finally I , finally, catch, $, ; ]   
+    [I -> try I catch . I           , finally, catch, $, ; ]
+    [I -> . try I catch I finally I , finally, catch, $, ; ] 
+    [I -> . try I catch I           , finally, catch, $, ; ] 
+    [I -> . I ; I                   , finally, catch, $, ; ] 
+    [I -> . instr                   , finally, catch, $, ; ] 
+
+State 12, 20, 29, 34:
+    [I -> try I catch I . finally I , finally, catch, $, ; ] 
+    [I -> try I catch I .           , finally, catch, $, ; ]                shift-reduce                        
+    [I -> I . ; I                   , finally, catch, $, ; ] 
+
+State 17, 26, 33, 36:
+    [I -> try I catch I finally . I , finally, catch, $, ; ]
+    [I -> . try I catch I finally I , finally, catch, $, ; ] 
+    [I -> . try I catch I           , finally, catch, $, ; ] 
+    [I -> . I ; I                   , finally, catch, $, ; ] 
+    [I -> . instr                   , finally, catch, $, ; ]
+
+State 23, 30, 35, 37:
+    [I -> try I catch I finally I . , finally, catch, $, ; ]                shift-reduce
+    [I -> I . ; I                   , finally, catch, $, ; ] 
+
+State 38:
+    [ S -> I $ .                    , $ ]                  
+
+=========================================================================
+
+Como resolver los shift reduce:
+
+En el estado
+    State 1:
+        [ S -> I . $                    , $ ]                                   shift-reduce                 
+        [ I -> I . ; I                  , $, ; ] 
+    Escogemos shift
+
+En el estado
+    State 8, 15, 24, 31:
+        [ I -> I ; I .                  , finally, catch, $, ; ]                shift-reduce 
+        [ I ->  I . ; I                 , finally, catch, $, ; ]  
+    Escogemos reduce, por la misma razón que en MCLR1
+En el estado 
+    State 12, 20, 29, 34:
+        [I -> try I catch I . finally I , finally, catch, $, ; ] 
+        [I -> try I catch I .           , finally, catch, $, ; ]                shift-reduce                        
+        [I -> I . ; I                   , finally, catch, $, ; ] 
+
+    Escogemos shift, por la misma razón que en MCLR1
+
+En el estado
+    State 23, 30, 35, 37:
+        [I -> try I catch I finally I . , finally, catch, $, ; ]                shift-reduce
+        [I -> I . ; I                   , finally, catch, $, ; ]
+
+    Escogemos reduce, por la misma razón que en MCLR1
