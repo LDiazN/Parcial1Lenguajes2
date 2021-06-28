@@ -1,0 +1,127 @@
+2.a) tabla de precedencia
+
+Grammar: 
+    S -> I                                
+    I -> try I catch I finally I 
+      |  try I catch I          
+      |  I ; I                      
+      |  instr
+
+
+_________| try | catch | finally | ; | inst | $
+ try     |  <  |   =   |   =     | < |  <   | >
+ catch   |  <  |   X   |   =     | < |  <   | >
+ finally |  <  |   X   |   X     | > |  <   | >
+ ;       |  <  |   X   |   X     | > |  <   | >
+ instr   |  >  |   >   |   >     | > |  X   | >
+ $       |  <  |   <   |   <     | < |  <   | 
+
+
+
+Por ejemplo 
+I ; I ; I = (I ; I) ; I  ===>  
+
+    $ < instr > ; < instr > ; < instr > $  (reducir I -> isntr)  I1 (notemos que antes de un ; lo único que puede venir es un instr en una frase que pertenece al lenguaje)
+    $ I ; < instr > ; < instr > $          reemplazar
+    $ < ; < instr > ; < instr > $          (reducir I -> isntr)  I2 
+    $ < ; I ; < instr > $                  reemplazar
+    $ < ; > ; < instr > $                  (reducir I -> I ; I)  (I1 ; I2)
+    $ I ; < instr > $                      reemplazar
+    $ < ; < instr > $                      (reducir I -> I)  I3
+    $ < ; I $                              reemplazar
+    $ < ; > $                              (reducir I -> I ; I)  (I1 ; I2) ; I
+    $ I $
+
+try I catch try I catch I finally I = try I catch (try I catch I finally I) ===>  
+
+    $ < try < instr > catch < try < instr > catch < instr > finally  < instr > $    (reducir I -> instr en todas las instr)
+    $ < try I catch < try I catch I finally I $                                     reemplazar
+    $ < try = catch < try = catch = finally > $                                     (reducir I -> try I catch I finally I)
+    $ < try = catch I $                                                             reemplazar
+    $ < try = catch > $                                                             (reducir try I catch I)
+    $ I $
+
+I ; try I catch I finally I ; I = I ; (try I catch I finally I) ; I
+    $ < instr > ; < try < instr > catch < instr > finally  < instr > ; < instr > $          (reducir I -> inst)
+    $ I ; < try < instr > catch < instr > finally  < instr > ; < instr > $                  reemplazar
+    $ < ; < try < instr > catch < instr > finally  < instr > ; < instr > $                  (reducir I -> inst)
+    $ < ; < try I catch < instr > finally  < instr > ; < instr > $                          reemplazar
+    $ < ; < try = catch = finally  < instr > ; < instr > $                                  (reducir I -> instr)
+    $ < ; < try = catch = finally  I ; < instr > $                                          reemplazar
+    $ < ; < try = catch = finally  > ; < instr > $                                          (reducir I -> try I catch I finally I )
+    $ < ; I ; < instr > $                                                                   reemplazar
+    $ < ; > ; < instr > $                                                                   (reducir I -> I ; I)
+    $ I ; < instr > $                                                                       reemplazar
+    $ < ; < instr > $                                                                       (reducir I -> instr)
+    $ < ; I $                                                                               (reducir I -> instr)
+    $ < ; I $                                                                               reemplazar
+    $ < ; > $                                                                               (reducir I -> I ; I)
+    $ I $                                                                                   
+
+
+try I catch I ; I = try I catch (I ; I) ===>
+    $ < try < instr > catch < instr > ; < instr > $         (reducir I->instr)
+    $ < try I catch < instr > ; < instr > $                 reemplazar
+    $ < try = catch < instr > ; < instr > $                 (reducir I->instr)
+    $ < try = catch I ; < instr > $                         reemplazar
+    $ < try = catch < ; < instr > $                         (reducir I->instr)
+    $ < try = catch < ; I $                                 reemplazar
+    $ < try = catch < ; > $                                 (reducir I->I;I)
+    $ < try = catch I $                                     reemplazar
+    $ < try = catch > $                                     (reducir I -> try I catch I)
+    $ I $                                     
+
+===============================================================================================
+2.b) Usaremos el reconocedor para reconocer
+
+“ instr ; try instr catch instr ; try instr catch instr finally instr ; instr ”
+
+Resultado esperado:
+instr ; try instr catch ( ( instr ; ( try instr catch instr finally instr ) ) ; instr )
+
+$ < instr > ; < try < instr > catch < instr > ; < try < instr > catch < instr > finally < instr > ; < instr > $     reducir I0 -> instr
+$ I0 ; < try < instr > catch < instr > ; < try < instr > catch < instr > finally < instr > ; < instr > $            reemplazar
+$ < ; < try < instr > catch < instr > ; < try < instr > catch < instr > finally < instr > ; < instr > $             reducir I1 -> instr
+$ < ; < try I1 catch < instr > ; < try < instr > catch < instr > finally < instr > ; < instr > $                    reemplazar
+$ < ; < try = catch < instr > ; < try < instr > catch < instr > finally < instr > ; < instr > $                     reducir I2 -> instr
+$ < ; < try = catch I2 ; < try < instr > catch < instr > finally < instr > ; < instr > $                            reemplazar
+$ < ; < try = catch < ; < try < instr > catch < instr > finally < instr > ; < instr > $                             reducir I3 -> instr
+$ < ; < try = catch < ; < try I3 catch < instr > finally < instr > ; < instr > $                                    reemplazar
+$ < ; < try = catch < ; < try = catch < instr > finally < instr > ; < instr > $                                     reducir I4 -> instr
+$ < ; < try = catch < ; < try = catch I4 finally < instr > ; < instr > $                                            reemplazar
+$ < ; < try = catch < ; < try = catch = finally < instr > ; < instr > $                                             reducir I5 -> instr
+$ < ; < try = catch < ; < try = catch = finally I5 ; < instr > $                                                    reemplazar
+$ < ; < try = catch < ; < try = catch = finally > ; < instr > $                                                     reducir I6 -> try I3 catch I4 finally I5
+$ < ; < try = catch < ; I6 ; < instr > $                                                                            reemplazar
+$ < ; < try = catch < ; > ; < instr > $                                                                             reducir I7 -> I2;I6
+$ < ; < try = catch I7 ; < instr > $                                                                                reemplazar
+$ < ; < try = catch < ; < instr > $                                                                                 reducir I8 -> instr
+$ < ; < try = catch < ; I8 $                                                                                        reemplazar
+$ < ; < try = catch < ; > $                                                                                         reducir I9 -> I7;I8
+$ < ; < try = catch I9 $                                                                                            reemplazar
+$ < ; < try = catch > $                                                                                             reducir I10 -> try I1 catch I9
+$ < ; I10 $                                                                                                         reemplazar
+$ < ; > $                                                                                                           reducir I11 -> I0;I10
+$ I11 $
+
+
+I11 = (I0;I10) = ((instr); try I1 catch I9) = ((instr); try instr catch (I7;I8)) = ( (instr) ; try instr catch ( ( I2;I6 ); instr ) )
+    = ( instr ; try instr catch ( ( instr ; ( try I3 catch I4 finally I5 ) ) ; instr ) )
+    =  instr ; try instr catch ( ( instr ; ( try instr catch instr finally instr ) ) ; instr ) 
+
+===============================================================================================
+
+2.c) creamos las funciones f, g
+    a) Primero intentamos crear la relación de equivalencia entre los nodos:
+        - try
+        - catch
+        - finally
+        - instr
+        - ;
+
+        Pero vemos que esto no es posible con nuestra tabla de precedencias actual, puesto que 
+        try = catch, pero catch < try, por lo que no cumplen la simetría requerida por = para 
+        ser relación de equivalencia.
+
+
+
