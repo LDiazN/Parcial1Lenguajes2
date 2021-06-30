@@ -9,10 +9,10 @@ Grammar:
 
 
 _________| try | catch | finally | ; | inst | $
- try     |  <  |   =   |   =     | < |  <   | >
- catch   |  <  |   X   |   =     | < |  <   | >
- finally |  <  |   X   |   X     | > |  <   | >
- ;       |  <  |   X   |   X     | > |  <   | >
+ try     |  <  |   =   |   X     | < |  <   | >
+ catch   |  <  |   >   |   =     | < |  <   | >
+ finally |  <  |   >   |   >     | > |  <   | >
+ ;       |  <  |   >   |   >     | > |  <   | >
  instr   |  >  |   >   |   >     | > |  X   | >
  $       |  <  |   <   |   <     | < |  <   | 
 
@@ -112,16 +112,45 @@ I11 = (I0;I10) = ((instr); try I1 catch I9) = ((instr); try instr catch (I7;I8))
 ===============================================================================================
 
 2.c) creamos las funciones f, g
-    a) Primero intentamos crear la relación de equivalencia entre los nodos:
-        - try
-        - catch
-        - finally
-        - instr
-        - ;
+    Vamos a intentar construir el grafo. Para esto utilizamos el script de python que acompaña este archivo,
+    obteniendo el siguiente grafo:
+        g_try       f_try
+        g_try       f_catch
+        g_try       f_finally
+        g_try       f_;
+        g_try       f_$
+        f_try       g_$
+        g_;         f_try
+        g_;         f_catch
+        g_;         f_$
+        g_instr     f_try
+        g_instr     f_catch
+        g_instr     f_finally
+        g_instr     f_;
+        g_instr     f_$
+        f_catch     g_catch
+        f_catch     g_$
+        g_catch     f_$
+        f_finally   g_catch
+        f_finally   g_finally
+        f_finally   g_;
+        f_finally   g_$
+        g_finally   f_$
+        f_;         g_catch
+        f_;         g_finally
+        f_;         g_;
+        f_;         g_$
+        f_instr     g_try
+        f_instr     g_catch
+        f_instr     g_finally
+        f_instr     g_;
+        f_instr     g_$
 
-        Pero vemos que esto no es posible con nuestra tabla de precedencias actual, puesto que 
-        try = catch, pero catch < try, por lo que no cumplen la simetría requerida por = para 
-        ser relación de equivalencia.
+    try: f = 1, g = 5
+    catch: f = 2, g = 1
+    finally: f = 4, g = 1
+    ;: f = 4, g = 3
+    instr: f = 6, g = 5
+    $: f = 0, g = 0
 
-
-
+    Vemos que el grafo no tiene ciclos, además las funciones existen y la relación de equivalencia existe
