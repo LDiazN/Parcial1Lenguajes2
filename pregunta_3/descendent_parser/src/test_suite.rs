@@ -1,8 +1,11 @@
 use crate::desc_parser;
 
+#[allow(unused)]
 pub fn s(s : &str) -> String {
     s.to_string()
 }
+
+#[allow(unused)]
 pub fn parse(s : &str) -> Option<String> {
     desc_parser::Parser::new().parse_string(s)
 }

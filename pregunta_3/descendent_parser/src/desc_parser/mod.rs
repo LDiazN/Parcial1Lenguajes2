@@ -114,8 +114,6 @@ impl Parser {
     // Parse a vector of symbols
     pub fn parse(&mut self, input : &Vec<Symbol>) -> Option<TypeName>{
 
-        println!("Parser state: \n\t {:?}", self);
-        println!("Arg: \n\t {:?}", &input[self.curr_lookahead..]);
         // next input symbol, next stack symbol
         let state = (input[self.curr_lookahead].clone(), self.stack.last().expect("should be something stacked"));
         
@@ -220,8 +218,6 @@ impl Parser {
                     None => return None,
                     Some(d) => d.type_val = z_type
                 };
-
-                println!("CURRENT STATE IS: \n\t{:?}", self);
             },
             (Symbol::Finally, Symbol::NonTerminal('F')) => {
                 // push symbols
