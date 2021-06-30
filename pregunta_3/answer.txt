@@ -1,0 +1,50 @@
+Gramática original: 
+    S -> I                       
+    I -> try I catch I finally I 
+      |  try I catch I          
+      |  I ; I                      
+      |  instr
+
+3.a) (2 puntos) Aumente el símbolo no–terminal I con un atributo tipo, que contenga el tipo del valor que retorna
+la instrucción representada en I. Puede suponer que cuenta con un tipo Either A B para representar un
+tipo que es opcionalmente A o B. Puede suponer, además, que el símbolo instr tiene un atributo intrínseco
+tipo que tiene el tipo para ese terminal. Puede agregar todos los atributos adicionales que desee a I,
+cuidando que la gramática resultante sea S–atribuida.
+
+    S -> I $                                { S.type <- I.type }             
+    I -> try I1 catch I2 finally I3         { I.type <- I3.type }
+      |  try I1 catch I2                    { I.type <- Either I1.type I2.type  }
+      |  I1 ; I2                            { I.type <- I2.type }
+      |  instr                              { I.type <- instr.type }
+
+3.b) (1 punto) Tenemos a nuestra disposici´on un reconocedor descendente. La gram´atica anterior tiene prefijos
+comunes y recursi´on izquierda. Transforme la gram´atica de tal forma que sea apropiada para un reconocedor
+descendente. Recuerde agregar atributos y reglas de tal forma que a´un se calcule el tipo de la instrucci´on
+en tipo, cuidando que la gram´atica resultante sea L–atribuida.
+
+    S -> I $                                { S.type <- I.type }             
+    I -> try I1 catch I2 finally I3         { I.type <- I3.type }
+      |  try I1 catch I2                    { I.type <- Either I1.type I2.type  }
+      |  I1 ; I2                            { I.type <- I2.type }
+      |  instr                              { I.type <- instr.type }
+
+    Resultado:
+
+    S -> I $                                { S.type <- I.type }
+    I ->  try I1 catch I2 F Z               { 
+                                                F.in <- Either I1.type I2.type
+                                                Z.in <- F.type 
+                                                I.type <- Z.type
+                                            }
+      |   instr Z                           {   
+                                                Z.in   <- instr.type
+                                                I.type <- Z.type
+                                            }
+
+    Z ->  ; I1                              { Z.type  <- I1.type }
+      |  lambda                             { Z.type  <- Z.in }
+
+    F -> finally I3                         { Z.type <- I3.type }
+      |  lambda                             { F.type <- F.in }
+
+3.c) 
